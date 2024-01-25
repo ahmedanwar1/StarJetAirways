@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarJetAirways.API", "StarJetAirways.API\StarJetAirways.API.csproj", "{2E9B5E83-AA5C-482D-A975-9561B283B304}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarJetAirways.Infrastructure", "StarJetAirways.Infrastructure\StarJetAirways.Infrastructure.csproj", "{031331FF-70CE-4B0A-9E57-78DD9DFB0C6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarJetAirways.Core", "StarJetAirways.Core\StarJetAirways.Core.csproj", "{DFE2178C-1DA7-48F6-8548-17EFB72AB7E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E9B5E83-AA5C-482D-A975-9561B283B304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E9B5E83-AA5C-482D-A975-9561B283B304}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E9B5E83-AA5C-482D-A975-9561B283B304}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E9B5E83-AA5C-482D-A975-9561B283B304}.Release|Any CPU.Build.0 = Release|Any CPU
+		{031331FF-70CE-4B0A-9E57-78DD9DFB0C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{031331FF-70CE-4B0A-9E57-78DD9DFB0C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{031331FF-70CE-4B0A-9E57-78DD9DFB0C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{031331FF-70CE-4B0A-9E57-78DD9DFB0C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFE2178C-1DA7-48F6-8548-17EFB72AB7E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFE2178C-1DA7-48F6-8548-17EFB72AB7E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFE2178C-1DA7-48F6-8548-17EFB72AB7E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFE2178C-1DA7-48F6-8548-17EFB72AB7E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15C86C74-008D-4B56-BC3A-3AB05E99B45F}
+	EndGlobalSection
+EndGlobal
