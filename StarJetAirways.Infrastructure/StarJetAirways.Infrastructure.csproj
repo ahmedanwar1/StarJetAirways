@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Neo4jClient" Version="5.1.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StarJetAirways.Core\StarJetAirways.Core.csproj" />
+  </ItemGroup>
+
 </Project>

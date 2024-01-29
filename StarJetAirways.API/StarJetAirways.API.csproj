@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <UserSecretsId>05253c85-1e07-45ff-b5df-b5336defa053</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\StarJetAirways.Core\StarJetAirways.Core.csproj" />
+    <ProjectReference Include="..\StarJetAirways.Infrastructure\StarJetAirways.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
