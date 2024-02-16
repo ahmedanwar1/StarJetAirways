@@ -23,9 +23,11 @@ public class Aircraft
     [Range(0, int.MaxValue)]
     public int TotalEconomyClassSeats { get; set; }
 
+    /*
     [Required]
     [ForeignKey("Airline")]
     public Guid AirlineID { get; set; }
 
     public virtual Airline Airline { get; set; }
+    */
 }

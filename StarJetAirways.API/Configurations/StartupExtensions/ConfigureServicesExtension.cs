@@ -25,10 +25,18 @@ public static class ConfigureServicesExtension
         #endregion
 
         #region add services into IoC
+        //automapper
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+        //airports
+        services.AddScoped<IAirportsRepository, AirportsRepository>();
         services.AddScoped<IAirportsGetterService, AirportsGetterService>();
         services.AddScoped<IAirportsAdderService, AirportsAdderService>();
-        services.AddScoped<IAirportsRepository, AirportsRepository>();
+
+        //airlines
+        services.AddScoped<IAirlinesRepository, AirlinesRepository>();
+        services.AddScoped<IAirlinesGetterService, AirlinesGetterService>();
+        services.AddScoped<IAirlinesAdderService, AirlinesAdderService>();
         #endregion
 
 

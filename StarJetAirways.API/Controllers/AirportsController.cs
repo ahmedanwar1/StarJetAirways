@@ -12,17 +12,14 @@ namespace StarJetAirways.API.Controllers
     [ApiController]
     public class AirportsController : ControllerBase
     {
-        //private readonly IGraphClient _graphClient;
         private readonly IAirportsGetterService _airportsGetterService;
         private readonly IAirportsAdderService _airportsAdderService;
 
         public AirportsController(
-            //IGraphClient graphClient,
             IAirportsGetterService airportsGetterService,
             IAirportsAdderService airportsAdderService
         )
         {
-            //_graphClient = graphClient;
             _airportsGetterService = airportsGetterService;
             _airportsAdderService = airportsAdderService;
         }

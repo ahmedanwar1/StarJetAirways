@@ -2,11 +2,10 @@
 using StarJetAirways.Core.Domain.CustomValidators;
 using System.ComponentModel.DataAnnotations;
 
-namespace StarJetAirways.Core.Domain.Entities.Neo4j.Nodes;
+namespace StarJetAirways.Core.DTOs;
 
-public class Airline
+public class AirlineResponseDTO
 {
-    [Key]
     [Required]
     [JsonProperty(PropertyName = "airlineId")]
     public Guid AirlineId { get; set; }
@@ -16,6 +15,4 @@ public class Airline
     [MaxLength(50)]
     [JsonProperty(PropertyName = "airlineName")]
     public required string AirlineName { get; set; }
-
-    //public virtual ICollection<Aircraft> Aircrafts { get; set; } = new HashSet<Aircraft>();
 }
