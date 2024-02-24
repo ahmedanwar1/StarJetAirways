@@ -37,6 +37,12 @@ public static class ConfigureServicesExtension
         services.AddScoped<IAirlinesRepository, AirlinesRepository>();
         services.AddScoped<IAirlinesGetterService, AirlinesGetterService>();
         services.AddScoped<IAirlinesAdderService, AirlinesAdderService>();
+
+        //aircrafts
+        services.AddScoped<IAircraftsRepository, AircraftsRepository>();
+        services.AddScoped<IAircraftsGetterService, AircraftsGetterService>();
+        services.AddScoped<IAircraftsAdderService, AircraftsAdderService>();
+
         #endregion
 
 

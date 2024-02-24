@@ -11,17 +11,19 @@ public class AirportsAdderService : IAirportsAdderService
 {
     private readonly IMapper _mapper;
     private readonly IAirportsRepository _airportsRepository;
+    private readonly IAirportsGetterService _airportsGetterService;
 
-    public AirportsAdderService(IMapper mapper, IAirportsRepository airportsRepository)
+    public AirportsAdderService(IMapper mapper, IAirportsRepository airportsRepository, IAirportsGetterService airportsGetterService)
     {
         _mapper = mapper;
         _airportsRepository = airportsRepository;
+        _airportsGetterService = airportsGetterService;
     }
 
     public async Task<AirportResponseDTO> AddAirport(AirportAddRequestDTO airportAddRequestDto)
     {
         //check airport does not exist
-        if (await _airportsRepository.CheckAirportExistsAsync(airportAddRequestDto.AirportCode))
+        if (await _airportsGetterService.CheckAirportExistsAsync(airportAddRequestDto.AirportCode))
         {
             throw new InvalidAirportCodeException("Airport code already exists!");
         }

@@ -20,10 +20,22 @@ public class AirportsGetterService : IAirportsGetterService
         return airports;
     }
 
-    public async Task<AirportResponseDTO> GetAirportByCode(string airportCode)
+    public async Task<AirportResponseDTO?> GetAirportByCode(string airportCode)
     {
-        AirportResponseDTO airport = await _airportsRepository.GetAirportByCode(airportCode);
+        AirportResponseDTO? airport = await _airportsRepository.GetAirportByCode(airportCode);
 
         return airport;
+    }
+
+    public async Task<bool> CheckAirportExistsAsync(string airportCode)
+    {
+        var airport = await GetAirportByCode(airportCode);
+
+        if (airport == null)
+        {
+            return false;
+        }
+
+        return true;
     }
 }

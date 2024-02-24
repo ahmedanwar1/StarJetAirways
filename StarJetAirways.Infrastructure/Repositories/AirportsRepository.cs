@@ -23,7 +23,7 @@ public class AirportsRepository : IAirportsRepository
         return airports;
     }
 
-    public async Task<AirportResponseDTO> GetAirportByCode(string airportCode)
+    public async Task<AirportResponseDTO?> GetAirportByCode(string airportCode)
     {
         var airport = await _graphClient.Cypher.Match("(a:Airport)")
                 .Where((Airport a) => a.AirportCode == airportCode)
@@ -48,18 +48,6 @@ public class AirportsRepository : IAirportsRepository
 
 
         return airport;
-    }
-
-    public async Task<bool> CheckAirportExistsAsync(string airportCode)
-    {
-        var airport = await GetAirportByCode(airportCode);
-
-        if (airport == null)
-        {
-            return false;
-        }
-
-        return true;
     }
 
 }

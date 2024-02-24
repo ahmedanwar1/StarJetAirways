@@ -1,11 +1,10 @@
 ﻿using Newtonsoft.Json;
 using StarJetAirways.Core.Domain.CustomValidators;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StarJetAirways.Core.Domain.Entities.Neo4j.Nodes;
+namespace StarJetAirways.Core.DTOs;
 
-public class Aircraft
+public class AircraftResponseDTO
 {
     [JsonProperty(PropertyName = "aircraftId")]
     [Key]

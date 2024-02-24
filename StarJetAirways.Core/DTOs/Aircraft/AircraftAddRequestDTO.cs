@@ -1,16 +1,11 @@
 ﻿using Newtonsoft.Json;
 using StarJetAirways.Core.Domain.CustomValidators;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace StarJetAirways.Core.Domain.Entities.Neo4j.Nodes;
+namespace StarJetAirways.Core.DTOs;
 
-public class Aircraft
+public class AircraftAddRequestDTO
 {
-    [JsonProperty(PropertyName = "aircraftId")]
-    [Key]
-    public Guid AircraftID { get; set; }
-
     [JsonProperty(PropertyName = "aircraftType")]
     [Required]
     [MaxLength(50)]
@@ -27,5 +22,9 @@ public class Aircraft
     [JsonProperty(PropertyName = "totalEconomyClassSeats")]
     [Range(0, int.MaxValue)]
     public int TotalEconomyClassSeats { get; set; }
+
+    [JsonProperty(PropertyName = "airlineId")]
+    public Guid AirlineId { get; set; }
+
 
 }

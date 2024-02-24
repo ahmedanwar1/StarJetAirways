@@ -22,7 +22,7 @@ public class AirlinesRepository : IAirlinesRepository
         return airlines;
     }
 
-    public async Task<AirlineResponseDTO> GetAirlineById(Guid id)
+    public async Task<AirlineResponseDTO?> GetAirlineById(Guid id)
     {
         var airline = await _graphClient.Cypher.Match("(a: Airline)")
             .Where((Airline a) => a.AirlineId == id)
@@ -48,15 +48,5 @@ public class AirlinesRepository : IAirlinesRepository
         return airline;
     }
 
-    public async Task<bool> CheckAirlineExistsAsync(Guid id)
-    {
-        var airline = await GetAirlineById(id);
 
-        if (airline == null)
-        {
-            return false;
-        }
-
-        return true;
-    }
 }
