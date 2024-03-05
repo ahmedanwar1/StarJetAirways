@@ -1,6 +1,7 @@
 ﻿using StarJetAirways.Core.Domain.CustomValidators;
 using StarJetAirways.Core.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace StarJetAirways.Core.DTOs;
 
@@ -20,6 +21,8 @@ public class FlightSearchCriteriaDTO : IValidatableObject
     [Required]
     [Range(1, int.MaxValue)]
     public int PassengerCount { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
     public TravelClassEnum TravelClass { get; set; } = TravelClassEnum.All;
     public bool DirectFlightOnly { get; set; } = false;
 
