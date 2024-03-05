@@ -11,19 +11,19 @@ public class AirportsAdderService : IAirportsAdderService
 {
     private readonly IMapper _mapper;
     private readonly IAirportsRepository _airportsRepository;
-    private readonly IAirportsGetterService _airportsGetterService;
+    private readonly IAirportsCheckerService _airportsCheckerService;
 
-    public AirportsAdderService(IMapper mapper, IAirportsRepository airportsRepository, IAirportsGetterService airportsGetterService)
+    public AirportsAdderService(IMapper mapper, IAirportsRepository airportsRepository, IAirportsCheckerService airportsCheckerService)
     {
         _mapper = mapper;
         _airportsRepository = airportsRepository;
-        _airportsGetterService = airportsGetterService;
+        _airportsCheckerService = airportsCheckerService;
     }
 
-    public async Task<AirportResponseDTO> AddAirport(AirportAddRequestDTO airportAddRequestDto)
+    public async Task<AirportResponseDTO> AddAirportAsync(AirportAddRequestDTO airportAddRequestDto)
     {
         //check airport does not exist
-        if (await _airportsGetterService.CheckAirportExistsAsync(airportAddRequestDto.AirportCode))
+        if (await _airportsCheckerService.CheckAirportExistsAsync(airportAddRequestDto.AirportCode))
         {
             throw new InvalidAirportCodeException("Airport code already exists!");
         }
@@ -31,7 +31,7 @@ public class AirportsAdderService : IAirportsAdderService
         //convert AddRequrstDTO to model
         Airport airportModel = _mapper.Map<Airport>(airportAddRequestDto);
 
-        Airport airportModelResult = await _airportsRepository.AddAirport(airportModel);
+        Airport airportModelResult = await _airportsRepository.AddAirportAsync(airportModel);
 
         AirportResponseDTO airportResponse = _mapper.Map<AirportResponseDTO>(airportModelResult);
 

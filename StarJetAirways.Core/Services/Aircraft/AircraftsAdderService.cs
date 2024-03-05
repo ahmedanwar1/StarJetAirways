@@ -11,20 +11,20 @@ public class AircraftsAdderService : IAircraftsAdderService
 {
     private readonly IMapper _mapper;
     private readonly IAircraftsRepository _aircraftsRepository;
-    private readonly IAirlinesGetterService _airlinesGetterService;
+    private readonly IAirlinesCheckerService _airlinesCheckerService;
 
-    public AircraftsAdderService(IMapper mapper, IAircraftsRepository aircraftsRepository, IAirlinesGetterService airlinesGetterService)
+    public AircraftsAdderService(IMapper mapper, IAircraftsRepository aircraftsRepository, IAirlinesCheckerService airlinesCheckerService)
     {
         _mapper = mapper;
         _aircraftsRepository = aircraftsRepository;
-        _airlinesGetterService = airlinesGetterService;
+        _airlinesCheckerService = airlinesCheckerService;
     }
 
-    public async Task<AircraftResponseDTO> AddAircraft(AircraftAddRequestDTO aircraftAddRequest)
+    public async Task<AircraftResponseDTO> AddAircraftAsync(AircraftAddRequestDTO aircraftAddRequest)
     {
         Guid airlineId = aircraftAddRequest.AirlineId;
 
-        if (await _airlinesGetterService.CheckAirlineExistsAsync(airlineId) == false)
+        if (await _airlinesCheckerService.CheckAirlineExistsAsync(airlineId) == false)
         {
             throw new InvalidAirlineIdException("Invalid Aircraft Id!");
         }
@@ -33,7 +33,7 @@ public class AircraftsAdderService : IAircraftsAdderService
         Aircraft aircraftModel = _mapper.Map<Aircraft>(aircraftAddRequest);
 
         //create
-        Aircraft airlineModelResult = await _aircraftsRepository.AddAircraft(aircraftModel, airlineId);
+        Aircraft airlineModelResult = await _aircraftsRepository.AddAircraftAsync(aircraftModel, airlineId);
 
         //map and return
         AircraftResponseDTO aircraftResponse = _mapper.Map<AircraftResponseDTO>(airlineModelResult);

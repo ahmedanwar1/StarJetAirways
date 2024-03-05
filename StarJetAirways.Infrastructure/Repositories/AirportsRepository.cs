@@ -15,7 +15,7 @@ public class AirportsRepository : IAirportsRepository
         _graphClient = graphClient;
     }
 
-    public async Task<IEnumerable<AirportResponseDTO>> GetAirports()
+    public async Task<IEnumerable<AirportResponseDTO>> GetAirportsAsync()
     {
         var airports = await _graphClient.Cypher.Match("(a:Airport)")
                 .Return(a => a.As<AirportResponseDTO>()).ResultsAsync;
@@ -23,7 +23,7 @@ public class AirportsRepository : IAirportsRepository
         return airports;
     }
 
-    public async Task<AirportResponseDTO?> GetAirportByCode(string airportCode)
+    public async Task<AirportResponseDTO?> GetAirportByCodeAsync(string airportCode)
     {
         var airport = await _graphClient.Cypher.Match("(a:Airport)")
                 .Where((Airport a) => a.AirportCode == airportCode)
@@ -32,7 +32,7 @@ public class AirportsRepository : IAirportsRepository
         return airport.FirstOrDefault();
     }
 
-    public async Task<Airport> AddAirport(Airport airport)
+    public async Task<Airport> AddAirportAsync(Airport airport)
     {
 
         await _graphClient.Cypher

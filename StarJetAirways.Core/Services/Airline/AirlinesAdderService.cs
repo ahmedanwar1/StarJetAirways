@@ -17,11 +17,11 @@ public class AirlinesAdderService : IAirlinesAdderService
         _mapper = mapper;
     }
 
-    public async Task<AirlineResponseDTO> AddAirline(AirlineAddRequestDTO airlineAddRequest)
+    public async Task<AirlineResponseDTO> AddAirlineAsync(AirlineAddRequestDTO airlineAddRequest)
     {
         Airline airlineModel = _mapper.Map<Airline>(airlineAddRequest);
 
-        Airline airlineModelResult = await _airlinesRepository.AddAirline(airlineModel);
+        Airline airlineModelResult = await _airlinesRepository.AddAirlineAsync(airlineModel);
 
         AirlineResponseDTO airlineResponse = _mapper.Map<AirlineResponseDTO>(airlineModelResult);
 

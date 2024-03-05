@@ -4,5 +4,5 @@ namespace StarJetAirways.Core.ServiceContracts;
 
 public interface IAirportsAdderService
 {
-    public Task<AirportResponseDTO> AddAirport(AirportAddRequestDTO airportAddRequest);
+    public Task<AirportResponseDTO> AddAirportAsync(AirportAddRequestDTO airportAddRequest);
 }

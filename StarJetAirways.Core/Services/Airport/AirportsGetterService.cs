@@ -13,29 +13,18 @@ public class AirportsGetterService : IAirportsGetterService
         _airportsRepository = airportsRepository;
     }
 
-    public async Task<IEnumerable<AirportResponseDTO>> GetAllAirports()
+    public async Task<IEnumerable<AirportResponseDTO>> GetAllAirportsAsync()
     {
-        IEnumerable<AirportResponseDTO> airports = await _airportsRepository.GetAirports();
+        IEnumerable<AirportResponseDTO> airports = await _airportsRepository.GetAirportsAsync();
 
         return airports;
     }
 
-    public async Task<AirportResponseDTO?> GetAirportByCode(string airportCode)
+    public async Task<AirportResponseDTO?> GetAirportByCodeAsync(string airportCode)
     {
-        AirportResponseDTO? airport = await _airportsRepository.GetAirportByCode(airportCode);
+        AirportResponseDTO? airport = await _airportsRepository.GetAirportByCodeAsync(airportCode);
 
         return airport;
     }
 
-    public async Task<bool> CheckAirportExistsAsync(string airportCode)
-    {
-        var airport = await GetAirportByCode(airportCode);
-
-        if (airport == null)
-        {
-            return false;
-        }
-
-        return true;
-    }
 }

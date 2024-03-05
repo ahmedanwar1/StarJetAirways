@@ -15,7 +15,7 @@ public class AircraftsRepository : IAircraftsRepository
         _graphClient = graphClient;
     }
 
-    public async Task<IEnumerable<AircraftResponseDTO>> GetAircrafts()
+    public async Task<IEnumerable<AircraftResponseDTO>> GetAircraftsAsync()
     {
         var response = await _graphClient.Cypher.Match("(aircraft:Aircraft)")
             .Return((aircraft) => aircraft.As<AircraftResponseDTO>()).ResultsAsync;
@@ -23,7 +23,7 @@ public class AircraftsRepository : IAircraftsRepository
         return response;
     }
 
-    public async Task<AircraftResponseDTO?> GetAircraftById(Guid id)
+    public async Task<AircraftResponseDTO?> GetAircraftByIdAsync(Guid id)
     {
         var response = await _graphClient.Cypher.Match("(aircraft: Aircraft)")
             .Where((Aircraft aircraft) => aircraft.AircraftID == id)
@@ -34,7 +34,7 @@ public class AircraftsRepository : IAircraftsRepository
         return response.FirstOrDefault();
     }
 
-    public async Task<IEnumerable<AircraftWithAirlineResponseDTO>> GetAircraftsWithAirline()
+    public async Task<IEnumerable<AircraftWithAirlineResponseDTO>> GetAircraftsWithAirlineAsync()
     {
         var response = await _graphClient.Cypher.Match("(airline:Airline)-[:OPERATES]->(aircraft:Aircraft)")
             .Return((airline, aircraft) => new
@@ -60,7 +60,7 @@ public class AircraftsRepository : IAircraftsRepository
         return aircraftsWithAirlineResponse;
     }
 
-    public async Task<AircraftWithAirlineResponseDTO?> GetAircraftWithAirlineById(Guid id)
+    public async Task<AircraftWithAirlineResponseDTO?> GetAircraftWithAirlineByIdAsync(Guid id)
     {
         var response = await _graphClient.Cypher.Match("(airline:Airline)-[:OPERATES]->(aircraft:Aircraft)")
              .Where((Aircraft aircraft) => aircraft.AircraftID == id)
@@ -94,7 +94,7 @@ public class AircraftsRepository : IAircraftsRepository
         return aircraftWithAirlineResponse;
     }
 
-    public async Task<Aircraft> AddAircraft(Aircraft aircraft, Guid airlineId)
+    public async Task<Aircraft> AddAircraftAsync(Aircraft aircraft, Guid airlineId)
     {
 
         await _graphClient.Cypher
@@ -107,15 +107,12 @@ public class AircraftsRepository : IAircraftsRepository
         return aircraft;
     }
 
-    public async Task<bool> CheckAircraftExistsAsync(Guid id)
+    public async Task<Guid?> GetAirlineIdForAircraftAsync(Guid aircraftId)
     {
-        var aircraft = await GetAircraftById(id);
+        var airlineResponse = await _graphClient.Cypher.Match("(airline:Airline)-[:OPERATES]->(aircraft:Aircraft)")
+            .Return((airline) => airline.As<AirlineResponseDTO>())
+            .ResultsAsync;
 
-        if (aircraft == null)
-        {
-            return false;
-        }
-
-        return true;
+        return airlineResponse.FirstOrDefault()?.AirlineId;
     }
 }

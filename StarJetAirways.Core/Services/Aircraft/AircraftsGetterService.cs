@@ -13,31 +13,38 @@ public class AircraftsGetterService : IAircraftsGetterService
         _aircraftsRepository = aircraftsRepository;
     }
 
-    public async Task<IEnumerable<AircraftResponseDTO>> GetAircrafts()
+    public async Task<IEnumerable<AircraftResponseDTO>> GetAircraftsAsync()
     {
-        IEnumerable<AircraftResponseDTO> aircrafts = await _aircraftsRepository.GetAircrafts();
+        IEnumerable<AircraftResponseDTO> aircrafts = await _aircraftsRepository.GetAircraftsAsync();
 
         return aircrafts;
     }
 
-    public async Task<AircraftResponseDTO?> GetAircraftById(Guid id)
+    public async Task<AircraftResponseDTO?> GetAircraftByIdAsync(Guid id)
     {
-        AircraftResponseDTO? aircraft = await _aircraftsRepository.GetAircraftById(id);
+        AircraftResponseDTO? aircraft = await _aircraftsRepository.GetAircraftByIdAsync(id);
 
         return aircraft;
     }
 
-    public async Task<IEnumerable<AircraftWithAirlineResponseDTO>> GetAircraftsWithAirline()
+    public async Task<IEnumerable<AircraftWithAirlineResponseDTO>> GetAircraftsWithAirlineAsync()
     {
-        IEnumerable<AircraftWithAirlineResponseDTO> aircrafts = await _aircraftsRepository.GetAircraftsWithAirline();
+        IEnumerable<AircraftWithAirlineResponseDTO> aircrafts = await _aircraftsRepository.GetAircraftsWithAirlineAsync();
 
         return aircrafts;
     }
 
-    public async Task<AircraftWithAirlineResponseDTO?> GetAircraftWithAirlineById(Guid id)
+    public async Task<AircraftWithAirlineResponseDTO?> GetAircraftWithAirlineByIdAsync(Guid id)
     {
-        AircraftWithAirlineResponseDTO? aircraft = await _aircraftsRepository.GetAircraftWithAirlineById(id);
+        AircraftWithAirlineResponseDTO? aircraft = await _aircraftsRepository.GetAircraftWithAirlineByIdAsync(id);
 
         return aircraft;
+    }
+
+    public async Task<Guid?> GetAirlineIdForAircraftAsync(Guid aircraftId)
+    {
+        Guid? airlineId = await _aircraftsRepository.GetAirlineIdForAircraftAsync(aircraftId);
+
+        return airlineId;
     }
 }

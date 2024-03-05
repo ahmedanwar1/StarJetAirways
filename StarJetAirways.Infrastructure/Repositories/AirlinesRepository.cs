@@ -14,7 +14,7 @@ public class AirlinesRepository : IAirlinesRepository
         _graphClient = graphClient;
     }
 
-    public async Task<IEnumerable<AirlineResponseDTO>> GetAirlines()
+    public async Task<IEnumerable<AirlineResponseDTO>> GetAirlinesAsync()
     {
         var airlines = await _graphClient.Cypher.Match("(a:Airline)")
             .Return(a => a.As<AirlineResponseDTO>()).ResultsAsync;
@@ -22,7 +22,7 @@ public class AirlinesRepository : IAirlinesRepository
         return airlines;
     }
 
-    public async Task<AirlineResponseDTO?> GetAirlineById(Guid id)
+    public async Task<AirlineResponseDTO?> GetAirlineByIdAsync(Guid id)
     {
         var airline = await _graphClient.Cypher.Match("(a: Airline)")
             .Where((Airline a) => a.AirlineId == id)
@@ -31,7 +31,7 @@ public class AirlinesRepository : IAirlinesRepository
         return airline.FirstOrDefault();
     }
 
-    public async Task<Airline> AddAirline(Airline airline)
+    public async Task<Airline> AddAirlineAsync(Airline airline)
     {
         await _graphClient.Cypher
            .Merge("(airline:Airline { airlineId: $id })")

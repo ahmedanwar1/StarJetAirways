@@ -4,7 +4,6 @@ namespace StarJetAirways.Core.ServiceContracts;
 
 public interface IAirlinesGetterService
 {
-    public Task<IEnumerable<AirlineResponseDTO>> GetAllAirlines();
-    public Task<AirlineResponseDTO?> GetAirlineById(Guid id);
-    public Task<bool> CheckAirlineExistsAsync(Guid id);
+    public Task<IEnumerable<AirlineResponseDTO>> GetAllAirlinesAsync();
+    public Task<AirlineResponseDTO?> GetAirlineByIdAsync(Guid id);
 }

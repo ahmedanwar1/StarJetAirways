@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using StarJetAirways.Core.Domain.Entities.Neo4j.Nodes;
 using StarJetAirways.Core.DTOs;
 using StarJetAirways.Core.Exceptions;
 using StarJetAirways.Core.ServiceContracts;
@@ -24,7 +25,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                IEnumerable<AircraftResponseDTO> aircrafts = await _aircraftsGetterService.GetAircrafts();
+                IEnumerable<AircraftResponseDTO> aircrafts = await _aircraftsGetterService.GetAircraftsAsync();
 
                 return Ok(aircrafts);
             }
@@ -39,7 +40,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                AircraftResponseDTO? aircraft = await _aircraftsGetterService.GetAircraftById(id);
+                AircraftResponseDTO? aircraft = await _aircraftsGetterService.GetAircraftByIdAsync(id);
 
                 if (aircraft == null)
                 {
@@ -59,7 +60,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                IEnumerable<AircraftWithAirlineResponseDTO> aircraftsWithAirline = await _aircraftsGetterService.GetAircraftsWithAirline();
+                IEnumerable<AircraftWithAirlineResponseDTO> aircraftsWithAirline = await _aircraftsGetterService.GetAircraftsWithAirlineAsync();
 
                 return Ok(aircraftsWithAirline);
             }
@@ -74,7 +75,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                AircraftWithAirlineResponseDTO? aircraftWithAirline = await _aircraftsGetterService.GetAircraftWithAirlineById(id);
+                AircraftWithAirlineResponseDTO? aircraftWithAirline = await _aircraftsGetterService.GetAircraftWithAirlineByIdAsync(id);
 
                 if (aircraftWithAirline == null)
                 {
@@ -94,9 +95,9 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                var aircraft = await _aircraftsAdderService.AddAircraft(aircraftAddRequest);
+                var aircraft = await _aircraftsAdderService.AddAircraftAsync(aircraftAddRequest);
 
-                return Ok(aircraft);
+                return Created($"/aircraft/{aircraft.AircraftID}", aircraft);
             }
             catch (InvalidAirlineIdException ex)
             {

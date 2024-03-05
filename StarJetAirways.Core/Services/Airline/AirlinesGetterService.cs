@@ -12,29 +12,18 @@ public class AirlinesGetterService : IAirlinesGetterService
         _airlinesRepository = airlinesRepository;
     }
 
-    public async Task<IEnumerable<AirlineResponseDTO>> GetAllAirlines()
+    public async Task<IEnumerable<AirlineResponseDTO>> GetAllAirlinesAsync()
     {
-        var airlines = await _airlinesRepository.GetAirlines();
+        var airlines = await _airlinesRepository.GetAirlinesAsync();
 
         return airlines;
     }
 
-    public async Task<AirlineResponseDTO?> GetAirlineById(Guid id)
+    public async Task<AirlineResponseDTO?> GetAirlineByIdAsync(Guid id)
     {
-        var airline = await _airlinesRepository.GetAirlineById(id);
+        var airline = await _airlinesRepository.GetAirlineByIdAsync(id);
 
         return airline;
     }
 
-    public async Task<bool> CheckAirlineExistsAsync(Guid id)
-    {
-        var airline = await _airlinesRepository.GetAirlineById(id);
-
-        if (airline == null)
-        {
-            return false;
-        }
-
-        return true;
-    }
 }

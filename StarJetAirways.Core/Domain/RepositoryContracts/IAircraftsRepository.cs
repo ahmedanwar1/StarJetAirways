@@ -5,9 +5,10 @@ namespace StarJetAirways.Core.Domain.RepositoryContracts;
 
 public interface IAircraftsRepository
 {
-    public Task<IEnumerable<AircraftWithAirlineResponseDTO>> GetAircraftsWithAirline();
-    public Task<IEnumerable<AircraftResponseDTO>> GetAircrafts();
-    public Task<AircraftResponseDTO?> GetAircraftById(Guid id);
-    public Task<AircraftWithAirlineResponseDTO?> GetAircraftWithAirlineById(Guid id);
-    public Task<Aircraft> AddAircraft(Aircraft aircraft, Guid airlineId);
+    public Task<IEnumerable<AircraftWithAirlineResponseDTO>> GetAircraftsWithAirlineAsync();
+    public Task<IEnumerable<AircraftResponseDTO>> GetAircraftsAsync();
+    public Task<AircraftResponseDTO?> GetAircraftByIdAsync(Guid id);
+    public Task<AircraftWithAirlineResponseDTO?> GetAircraftWithAirlineByIdAsync(Guid id);
+    public Task<Aircraft> AddAircraftAsync(Aircraft aircraft, Guid airlineId);
+    public Task<Guid?> GetAirlineIdForAircraftAsync(Guid aircraftId);
 }

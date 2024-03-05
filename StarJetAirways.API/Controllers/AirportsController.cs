@@ -27,7 +27,7 @@ namespace StarJetAirways.API.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAirports()
         {
-            var airports = await _airportsGetterService.GetAllAirports();
+            var airports = await _airportsGetterService.GetAllAirportsAsync();
 
             return Ok(airports);
         }
@@ -37,7 +37,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                var airport = await _airportsGetterService.GetAirportByCode(airportCode.ToUpper());
+                var airport = await _airportsGetterService.GetAirportByCodeAsync(airportCode.ToUpper());
 
                 if (airport == null)
                 {
@@ -58,7 +58,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                AirportResponseDTO airport = await _airportsAdderService.AddAirport(airportAddRequest);
+                AirportResponseDTO airport = await _airportsAdderService.AddAirportAsync(airportAddRequest);
 
                 return Created($"/airport/{airport.AirportCode}", airport);
             }

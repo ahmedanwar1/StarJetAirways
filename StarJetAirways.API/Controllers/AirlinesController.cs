@@ -24,7 +24,7 @@ namespace StarJetAirways.API.Controllers
             try
             {
                 //fetch airlines
-                var airlines = await _airlinesGetterService.GetAllAirlines();
+                var airlines = await _airlinesGetterService.GetAllAirlinesAsync();
 
                 //return airlines
                 return Ok(airlines);
@@ -40,7 +40,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                var airline = await _airlinesGetterService.GetAirlineById(id);
+                var airline = await _airlinesGetterService.GetAirlineByIdAsync(id);
 
                 if (airline == null)
                 {
@@ -60,7 +60,7 @@ namespace StarJetAirways.API.Controllers
         {
             try
             {
-                var createdAirline = await _airlineAdderService.AddAirline(airlineAddRequest);
+                var createdAirline = await _airlineAdderService.AddAirlineAsync(airlineAddRequest);
 
                 if (createdAirline == null)
                 {
